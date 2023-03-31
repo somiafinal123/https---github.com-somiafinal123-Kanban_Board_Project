@@ -1,0 +1,136 @@
+/* Start Variables */
+:root {
+  --main-color: #3d9578;
+  --text-color: #fff;
+}
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--main-color);
+}
+.kanban {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* Small */
+@media (min-width: 768px) {
+  .kanban {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .kanban {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .kanban {
+    width: 1170px;
+  }
+}
+/* End Global Rules */
+/* Start Kanban */
+.kanban-all {
+  position: relative;
+  min-height: 100vh;
+}
+.kanban-all h1 {
+  font-weight: 500;
+  font-size: 55px;
+  color: var(--text-color);
+  margin: 0 auto;
+  padding: 50px;
+  text-align: center;
+}
+.kanban-all .kanban {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+.kanban-all .kanban .kanban__column {
+  padding: 60px 0.5rem 1rem;
+  position: relative;
+}
+@media (max-width: 991px) {
+  .kanban-all .kanban {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+  }
+}
+.kanban-all .kanban .kanban__column .kanban__column-title {
+  color: var(--text-color);
+  text-align: center;
+  font-weight: 500;
+  font-size: 30px;
+  user-select: none;
+  padding: 0.5rem 1rem;
+}
+.kanban__item-input {
+  position: relative;
+  font-size: 1.1rem;
+  padding: 20px 15px;
+  background-color: var(--text-color);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0/ 13%), 0 2px 4px 0 rgb(0 0 0/ 12%);
+}
+.kanban__item-input::before {
+  content: "\F044";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  top: 20px;
+  right: 0;
+  font-weight: 600;
+  width: 50px;
+  color: rgb(50, 195, 106);
+  cursor: pointer;
+}
+.kanban__item-input::after {
+  content: "\f1f8";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  top: 20px;
+  right: -25px;
+  font-weight: 600;
+  width: 50px;
+  color: red;
+  cursor: pointer;
+}
+
+.kanban__item-input:hover::after {
+  opacity: 0.5;
+}
+.kanban__dropzone {
+  height: 10px;
+  transition: background-color 0.15s, height 0.15s;
+}
+.kanban__dropzone--active {
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.kanban__add-item {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--text-color);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.kanban__add-item:hover {
+  background-color: #4caf8e;
+}
+/* End Kanban */ ;

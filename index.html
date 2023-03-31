@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Board</title>
+
+    <!-- Main Template CSS file -->
+    <link rel="stylesheet" href="css/kanban.css" />
+
+    <!-- Render All Elements Normally -->
+    <link rel="stylesheet" href="css/normalize.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="kanban-all">
+      <h1>Kanban Board</h1>
+      <div class="kanban">
+        <!-- <div class="kanban__column">
+          <div class="kanban__column-title">Not Started</div>
+          <div class="kanban__items">
+            <div contenteditable class="kanban__item-input" draggable="true">
+              Task1
+            </div>
+            <div class="kanban__dropzone kanban__dropzone--active"></div>
+          </div>
+          <button class="kanban__add-item" type="button">+ Add</button>
+        </div> -->
+      </div>
+    </div>
+    <script src="js/main.js" type="module">
+      var dropbox = document.querySelector('.kanban__item-input');
+      var drg , drgT , drgL , drgB , drgR ;
+
+      var el , avail ;
+
+      function dragStart(evt){
+          el = evt.target ;
+          if(el.getAttribute('draggable') == 'true'){
+              avail = 'available';
+          } else {
+              avail = '';
+          }
+      }
+
+      function drag(evt){
+          if(avail == 'available'){
+              el.style.position="absolute";
+              el.style.left=evt.touches[0].clientX-el.clientWidth/2;
+               el.style.top=evt.touches[0].clientY-el.clientHeight/2;
+
+               drg = el.getBoundingClientRect();
+               drgT = drg.top ;
+               drgB = drg.bottom ;
+               drgL = drg.left ;
+               drgR = drg.right ;
+          } else {}
+          evt.preventDefault();
+      }
+
+      function drop(){
+
+          // update on drop
+
+          var drp = dropbox.getBoundingClientRect();
+
+      var drpT = drp.top ,
+          drpL = drp.left ,
+          drpB = drp.bottom ,
+          drpR = drp.right ;
+
+
+          if(avail == 'available'){
+              if(drpT < drgT &&
+                 drpL < drgL &&
+                 drpB > drgB &&
+                 drpR > drgR){
+                     dropbox.appendChild(el);
+
+                     el.style.position='';
+                     el.setAttribute('draggable','false');
+                 }
+          } else {}
+
+      }
+    </script>
+  </body>
+</html>
